@@ -1,0 +1,27 @@
+body {
+  background-color: #192851;
+}
+
+h1 {
+  color: #ffffff
+}
+
+h4 {
+  color: #ffffff
+}
+
+.centered {
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
+input:focus:not([read-only]) {
+	border-bottom: none!important;
+	box-shadow: none!important;	
+} 
+
+input:not([read-only]) {
+	border-bottom: none!important;
+	box-shadow: none!important;	
+} 
