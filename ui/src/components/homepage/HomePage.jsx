@@ -1,22 +1,28 @@
 import './HomePage.css'
 import TextField from '@material-ui/core/TextField';
-import styled from "styled-components";
+import { makeStyles } from "@material-ui/core/styles";
 
-const WhiteBorderTextField = styled(TextField)`
-  & .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
-    border-color: white
-  }
-  & .MuiOutlinedInput-input {
-    color: white
-  }
-  & .MuiOutlinedInput-root {
-    &.Mui-focused fieldset {
-      border-color: white
+
+const useStyles = makeStyles({
+  root: {
+    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+      borderColor: "white"
+    },
+    "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+      borderColor: "white"
+    },
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "white"
+    },
+    "& .MuiInputBase-root": {
+      color: "white",
+      height: 60
     }
   }
-`;
+});
 
 export const HomePage = () => {
+  const classes = useStyles();
 
   return (
     <>
@@ -28,13 +34,14 @@ export const HomePage = () => {
       </div>
       <div className='centered'>
         <form noValidate autoComplete="off">
-          <WhiteBorderTextField
+          <TextField
             id="standard-basic"
-            label="ApiKey"
+            label="ApiKey..."
             variant="outlined"
             key="Confirmation Code"
+            className={classes.root}
             InputLabelProps={{
-              style: { color: '#A0A0C0' },
+              style: { color: '#FFFFFF' },
             }}
           />
         </form>
