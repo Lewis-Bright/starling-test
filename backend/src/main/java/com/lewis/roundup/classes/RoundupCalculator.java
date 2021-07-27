@@ -33,7 +33,6 @@ public class RoundupCalculator {
                 .map(Transaction::calculateRoundup)
                 .map(BigDecimal::valueOf)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
-        System.out.println(savingsGoal);
         int transactionCount = feed.getFeedItems().size();
 
         return new RoundupInfo(savingsGoal, transactionCount, start, end);

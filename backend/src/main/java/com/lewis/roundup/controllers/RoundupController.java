@@ -4,10 +4,7 @@ import com.lewis.roundup.classes.RoundupCalculator;
 import com.lewis.roundup.models.*;
 import com.lewis.roundup.services.StarlingRestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RoundupController {
@@ -18,8 +15,9 @@ public class RoundupController {
     @Autowired
     private RoundupCalculator roundupCalculator;
 
+    @CrossOrigin("http://localhost:3000")
     @PostMapping("/savings_goal/create")
-    RoundupInfo createSavingsGoal(@RequestHeader("auth") String auth) {
+    RoundupInfo createSavingsGoal(@RequestHeader("Authorization") String auth) {
         Accounts accounts = starlingRestService.getAccounts(auth);
         RoundupInfo roundupInfo = roundupCalculator.calculate(accounts.getFirst(), auth);
         CurrencyAmount savingAmount = new CurrencyAmount("GBP", roundupInfo.getTotalSavings().intValue());

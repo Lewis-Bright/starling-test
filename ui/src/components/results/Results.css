@@ -1,0 +1,17 @@
+h1 {
+  color: #ffffff
+}
+
+h4 {
+  color: #ffffff
+}
+
+.centered {
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
+.gap {
+  margin-top: 10px;
+}

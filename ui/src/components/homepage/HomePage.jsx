@@ -1,6 +1,8 @@
 import './HomePage.css'
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from "@material-ui/core/styles";
+import { useState } from 'react'
+import { Results } from '../results/Results';
 
 
 const useStyles = makeStyles({
@@ -24,6 +26,20 @@ const useStyles = makeStyles({
 export const HomePage = () => {
   const classes = useStyles();
 
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setSubmitted(true);
+  }
+
+  const [value, setValue] = useState("");
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+    setSubmitted(false);
+  };
+
   return (
     <>
       <div className='centered'>
@@ -33,19 +49,21 @@ export const HomePage = () => {
         <h4 className='white-text'>Please provide an api key for this request:</h4>
       </div>
       <div className='centered'>
-        <form noValidate autoComplete="off">
+        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <TextField
             id="standard-basic"
             label="ApiKey..."
             variant="outlined"
-            key="Confirmation Code"
             className={classes.root}
             InputLabelProps={{
               style: { color: '#FFFFFF' },
             }}
+            value={value}
+            onChange={handleChange}
           />
         </form>
       </div>
+      {submitted && <Results apiKey={value} />}
     </>
   )
 }
