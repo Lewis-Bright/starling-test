@@ -1,30 +1,31 @@
 package com.lewis.roundup.controllers;
 
-import com.lewis.roundup.classes.SavingsGoalCalculator;
-import com.lewis.roundup.models.SavingsGoalInfo;
-import com.lewis.roundup.repositories.SavingsGoalInfoRepository;
+import com.lewis.roundup.classes.RoundupCalculator;
+import com.lewis.roundup.models.*;
+import com.lewis.roundup.services.StarlingRestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class RoundupController {
 
     @Autowired
-    private SavingsGoalInfoRepository savingsGoalRepository;
+    private StarlingRestService starlingRestService;
 
     @Autowired
-    private SavingsGoalCalculator savingsGoalCalculator;
-
-    @GetMapping("/test")
-    String test() {
-        return "test";
-    }
+    private RoundupCalculator roundupCalculator;
 
     @PostMapping("/savings_goal/create")
-    SavingsGoalInfo createSavingsGoal() {
-        return savingsGoalCalculator.calculate();
+    RoundupInfo createSavingsGoal(@RequestHeader("auth") String auth) {
+        Accounts accounts = starlingRestService.getAccounts(auth);
+        RoundupInfo roundupInfo = roundupCalculator.calculate(accounts.getFirst(), auth);
+        CurrencyAmount savingAmount = new CurrencyAmount("GBP", roundupInfo.getTotalSavings().intValue());
+        SavingsGoal savingsGoal = new SavingsGoal("Roundup", "GBP", savingAmount, "");
+        starlingRestService.createSavingsGoal(accounts.getFirst(), savingsGoal, auth);
+        return roundupInfo;
     }
 
 
