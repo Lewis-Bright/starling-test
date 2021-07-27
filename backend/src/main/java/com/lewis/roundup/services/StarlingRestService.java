@@ -1,6 +1,9 @@
 package com.lewis.roundup.services;
 
-import com.lewis.roundup.models.*;
+import com.lewis.roundup.models.Account;
+import com.lewis.roundup.models.Accounts;
+import com.lewis.roundup.models.Feed;
+import com.lewis.roundup.models.SavingsGoal;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -49,7 +52,7 @@ public class StarlingRestService {
     }
 
     /**
-     * Get 1 week's worth of transactions for the given account's default category
+     * Get the last week's worth of transactions for the given account's default category
      */
     public Feed getFeed(Account account, ZonedDateTime start, ZonedDateTime end, String auth) {
         String baseUrl = String.format(TRANSACTIONS_ENDPOINT, account.getAccountUid(), account.getDefaultCategory());
