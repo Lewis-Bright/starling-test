@@ -45,5 +45,9 @@ export const Results = (props) => {
     </>
   )
 
-  return (<>{data && <h1>You've saved £{data.totalSavings}</h1>}</>)
+  return (
+    <>
+      {data && <div className='centered'><h1>You've saved £{data.totalSavingsInPounds}</h1></div>}
+    </>
+  )
 };

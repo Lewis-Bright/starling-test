@@ -167,6 +167,9 @@ public class Transaction {
         return direction.equals(OUTBOUND_KEY);
     }
 
+    /**
+     * Returns amount rounded up to the nearest £, in pennies
+     */
     public int calculateRoundup() {
         // This would need to change depending on the round up "target". We are only
         // concerned with the nearest pound, in GBP, so this is ok for our use case
