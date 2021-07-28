@@ -17,6 +17,9 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 
+/**
+ * Handles all api calls to Starling bank's developer API
+ */
 @Service
 public class StarlingRestService {
 

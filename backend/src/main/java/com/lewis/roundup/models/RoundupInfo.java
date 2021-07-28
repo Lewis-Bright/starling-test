@@ -16,6 +16,10 @@ public class RoundupInfo {
 
     private final ZonedDateTime endDate;
 
+    /**
+     * This isn't really being used in the end, but could be stored in a database to keep a log of all of the
+     * calculations that have been done
+     */
     public RoundupInfo(BigDecimal totalSavings, int numberOfTransactions, ZonedDateTime startDate, ZonedDateTime endDate) {
         this.totalSavings = totalSavings;
         totalSavingsInPounds = totalSavings.divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);

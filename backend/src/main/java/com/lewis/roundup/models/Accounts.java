@@ -3,6 +3,9 @@ package com.lewis.roundup.models;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Simply holds the accounts, so they can easily be read from the rest api response
+ */
 public class Accounts implements Serializable {
 
     private List<Account> accounts;

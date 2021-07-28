@@ -8,4 +8,6 @@ Install the dependencies (e.g. `npm install`) and then run `yarn start` or `npm 
 
 Run `./mvnw spring-boot:run` in the backend directory, to start a spring project on port 8080.
 
-Enter a valid api key for an api customer in the UI, and a request will be made to the backend service. This will handle the calculation of the transactions round up, and will make the relevant requests to Starling's api, before returning the saved value
+Enter a valid api key for an api customer in the UI, and a request will be made to the backend service. This will handle the calculation of the transactions round up, and will make the relevant requests to Starling's api, before returning the saved value.
+
+You can also trigger the roundup directly in the backend, see the backend/README.md for more info on that.

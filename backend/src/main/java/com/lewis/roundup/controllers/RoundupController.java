@@ -15,6 +15,11 @@ public class RoundupController {
     @Autowired
     private RoundupCalculator roundupCalculator;
 
+    /**
+     * Creates a savings goal by finding the account associated with the received auth key, getting all of the
+     * transactions from the default category of the account and summing the roundup required to make each transaction
+     * to a full £
+     */
     @CrossOrigin("http://localhost:3000")
     @PostMapping("/savings_goal/create")
     RoundupInfo createSavingsGoal(@RequestHeader("Authorization") String auth) {

@@ -1,15 +1,14 @@
 package com.lewis.roundup.classes;
 
 import com.lewis.roundup.models.Account;
-import com.lewis.roundup.models.RoundupInfo;
 import com.lewis.roundup.models.Feed;
+import com.lewis.roundup.models.RoundupInfo;
 import com.lewis.roundup.models.Transaction;
 import com.lewis.roundup.services.StarlingRestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
@@ -22,7 +21,6 @@ public class RoundupCalculator {
     private StarlingRestService starlingRestService;
 
     public RoundupInfo calculate(Account account, String auth) {
-
         LocalDate now = LocalDate.now(ZoneOffset.UTC);
         LocalDate sevenDaysAgo = now.minusDays(7);
 
